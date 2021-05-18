@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.fasterxml.jackson.datatype.jdk8.OptionalDoubleSerializer;
 import com.library.dao.BookDao;
 import com.library.model.Book;
 
@@ -46,7 +48,7 @@ public class BookSericeTest {
 		when(bookDao.findBybookName(ArgumentMatchers.anyString())).thenReturn(b1);
 		when(bookDao.findBybookISBN(ArgumentMatchers.anyString())).thenReturn(b1);
 		when(bookDao.findByKey(ArgumentMatchers.anyString())).thenReturn(books);
-		when(bookDao.getOne(ArgumentMatchers.anyLong())).thenReturn(b1);
+		when(bookDao.findById(ArgumentMatchers.anyLong())).thenReturn(Optional.of(b1));
 		doNothing().when(bookDao).deleteById(ArgumentMatchers.anyLong());
 	}
 	
